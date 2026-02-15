@@ -250,76 +250,22 @@
       box-shadow: 0 10px 20px -14px rgba(10, 60, 255, 0.85);
     }
 
-    /* ✅ Publications counter next to title (more visually charming + includes Preprint) */
+    /* ✅ Counter as plain text, same font next to "Publications" */
     .pub-counter{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-left: 12px;
-      padding: 6px 8px;
-      border-radius: 999px;
-      background:
-        radial-gradient(500px 200px at 0% 0%, rgba(10, 60, 255, 0.14), transparent 60%),
-        radial-gradient(450px 180px at 100% 0%, rgba(255, 45, 85, 0.12), transparent 60%),
-        rgba(2,6,23,0.03);
-      border: 1px solid rgba(10, 60, 255, 0.18);
-      box-shadow:
-        0 12px 24px -18px rgba(10, 60, 255, 0.40),
-        0 10px 18px -22px rgba(255, 45, 85, 0.35);
-      transform: translateY(-2px);
-      white-space: nowrap;
-      user-select: none;
-    }
-
-    .pc-pill{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.85);
-      border: 1px solid rgba(2,6,23,0.10);
-      box-shadow: 0 10px 20px -18px rgba(2,6,23,0.20);
-      transition: 0.18s;
-    }
-    .pc-pill:hover{
-      transform: translateY(-1px);
-      border-color: rgba(10, 60, 255, 0.22);
-      box-shadow: 0 18px 30px -24px rgba(10, 60, 255, 0.40);
-    }
-
-    .pc-k{
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 900;
+      display: inline;
+      margin-left: 10px;
+      font-size: 1.05rem;    /* slightly smaller than title */
+      font-weight: 800;
       color: rgba(71, 85, 105, 0.95);
       letter-spacing: -0.01em;
+      white-space: nowrap;
     }
-    .pc-v{
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      font-weight: 950;
-      color: var(--text-main);
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(2,6,23,0.10);
-      background: rgba(2,6,23,0.03);
-    }
-
-    .pc-total .pc-v{ border-color: rgba(10, 60, 255, 0.22); background: rgba(10, 60, 255, 0.08); }
-    .pc-conf .pc-v{ border-color: rgba(6, 27, 122, 0.20); background: rgba(6, 27, 122, 0.07); }
-    .pc-journal .pc-v{ border-color: rgba(2,6,23,0.18); background: rgba(2,6,23,0.05); }
-    .pc-preprint .pc-v{ border-color: rgba(255, 45, 85, 0.22); background: rgba(255, 45, 85, 0.08); }
-
     @media (max-width: 600px){
       .pub-counter{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
+        display: block;
         margin-left: 0;
         margin-top: 10px;
-        width: fit-content;
-        transform: none;
+        white-space: normal;
       }
     }
 
@@ -790,12 +736,7 @@
         <div class="section-header">
           <h2 class="section-title">
             Publications
-            <span id="pub-counter" class="pub-counter">
-              <span class="pc-pill pc-total"><span class="pc-k">Total</span><span class="pc-v">0</span></span>
-              <span class="pc-pill pc-conf"><span class="pc-k">Conf</span><span class="pc-v">0</span></span>
-              <span class="pc-pill pc-journal"><span class="pc-k">Journal</span><span class="pc-v">0</span></span>
-              <span class="pc-pill pc-preprint"><span class="pc-k">Preprint</span><span class="pc-v">0</span></span>
-            </span>
+            <span id="pub-counter" class="pub-counter">(Total: 0, Conference: 0, Journal: 0, Preprint: 0)</span>
           </h2>
 
           <div class="filters">
@@ -1593,10 +1534,9 @@
     }
 
     /* =========================
-       ✅ Publication counter next to title
-       - counts within CURRENT FILTERS (category/year/conf dropdown)
-       - Journal heuristic based on data-conf
-       - Preprint count is separate
+       ✅ Counter text: (Total: xx, Conference: xx, Journal: xx, Preprint: xx)
+       - counts within CURRENT FILTERS
+       - Preprint counted separately (category includes preprint OR venue == arXiv)
     ========================= */
     function isJournal(confName) {
       const c = (confName || "").toLowerCase();
@@ -1607,8 +1547,8 @@
     }
 
     function updatePubCounter() {
-      const wrap = document.getElementById("pub-counter");
-      if (!wrap) return;
+      const el = document.getElementById("pub-counter");
+      if (!el) return;
 
       const filtered = getFilteredItems();
 
@@ -1619,8 +1559,6 @@
       filtered.forEach(p => {
         const confName = (p.dataset.conf || "").trim();
         const confLower = confName.toLowerCase();
-
-        // ✅ Preprint detection: category includes "preprint" OR venue is arXiv
         const isPre = hasCategory(p, "preprint") || confLower === "arxiv";
 
         if (isPre) {
@@ -1633,16 +1571,7 @@
       });
 
       const total = filtered.length;
-
-      const setNum = (selector, val) => {
-        const el = wrap.querySelector(selector);
-        if (el) el.textContent = String(val);
-      };
-
-      setNum(".pc-total .pc-v", total);
-      setNum(".pc-conf .pc-v", conf);
-      setNum(".pc-journal .pc-v", journal);
-      setNum(".pc-preprint .pc-v", preprint);
+      el.textContent = `(Total: ${total}, Conference: ${conf}, Journal: ${journal}, Preprint: ${preprint})`;
     }
 
     function renderPagination(totalPages) {
