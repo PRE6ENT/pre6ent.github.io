@@ -18,32 +18,31 @@
 
   <!-- Pretendard (CDN) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-
-  <!-- Keep JetBrains Mono for small code-like meta text -->
+  <!-- JetBrains Mono -->
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      /* THEME (AISI-like): Deep Blue + Orange Accent */
-      --primary: #0b408d;
-      --primary-light: #1f6fdd;
-      --accent: #ff3300;
-      --accent-soft: #fff0ea;
+      /* ✅ More vivid + higher-contrast academic palette */
+      --primary: #0a3cff;         /* vivid blue */
+      --primary-deep: #061b7a;
+      --accent: #ff2d55;          /* vivid magenta-red */
+      --accent-soft: rgba(255, 45, 85, 0.10);
 
-      --bg-body: #f3f6fc;
+      --bg-body: #ffffff;
       --bg-paper: #ffffff;
+      --bg-soft: #f6f7fb;
 
-      --text-main: #0f172a;
+      --text-main: #0b1220;
       --text-muted: #475569;
 
-      --border-subtle: #e5e7eb;
+      --border-subtle: rgba(2, 6, 23, 0.10);
 
-      --radius-lg: 24px;
-      --radius-sm: 12px;
+      --radius-lg: 22px;
+      --radius-sm: 14px;
 
-      /* Fonts */
       --font-main: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
                    Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
       --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
@@ -51,193 +50,274 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-main);
-      background-color: var(--bg-body);
+      background: var(--bg-body);
       color: var(--text-main);
       line-height: 1.7;
-      padding-bottom: 5rem;
+      padding-bottom: 4rem;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
-      /* ✅ Larger, more modern baseline font for readability */
       font-size: 17.5px;
     }
 
     .wrapper {
-      max-width: 900px; /* slightly wider for breathing room */
+      max-width: 900px;
       margin: 2rem auto;
       background: var(--bg-paper);
       border-radius: var(--radius-lg);
-      box-shadow: 0 20px 40px -10px rgba(2, 6, 23, 0.12);
+      border: 1px solid rgba(2, 6, 23, 0.06);
+      box-shadow: 0 18px 40px -18px rgba(2, 6, 23, 0.20);
       overflow: hidden;
       position: relative;
     }
 
-    /* --- HERO --- */
+    /* ===== HERO (Youngwan-like: left-aligned, compact, strong hierarchy) ===== */
     .hero {
-      position: relative;
-      padding: 4.25rem 2rem 2.75rem 2rem;
-      background: radial-gradient(circle at 50% 0%, #eaf2ff 0%, #ffffff 75%);
-      text-align: center;
+      padding: 3.25rem 2.25rem 2.25rem 2.25rem;
+      background:
+        radial-gradient(900px 320px at 0% 0%, rgba(10, 60, 255, 0.09), transparent 55%),
+        radial-gradient(700px 260px at 100% 0%, rgba(255, 45, 85, 0.08), transparent 55%),
+        linear-gradient(180deg, var(--bg-soft), #ffffff 55%);
     }
 
-    /* Slightly smaller + guaranteed "no crop" appearance */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.6rem;
+      align-items: center;
+    }
+
     .profile-wrap {
-      position: relative;
-      width: 112px; height: 112px;   /* slightly smaller to reduce dominance */
-      margin: 0 auto 1.25rem auto;
+      width: 128px; height: 128px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #fff;
+      box-shadow:
+        0 10px 18px -10px rgba(2, 6, 23, 0.35),
+        0 0 0 6px rgba(10, 60, 255, 0.08);
+      background: #fff;
     }
-
     .profile-img {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
-      display: block;
       object-fit: contain;
       object-position: center;
-      border: 4px solid white;
-      box-shadow: 0 10px 15px -3px rgba(11, 64, 141, 0.22);
-      background-color: #ffffff
+      display: block;
+      background: #ffffff;
     }
 
+    .hero-text { min-width: 0; }
+
     .name {
-      font-family: var(--font-main);
-      font-size: 3.05rem; /* ✅ stronger visual hierarchy */
+      font-size: 3.05rem;
       font-weight: 950;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.45rem;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      margin-bottom: 0.55rem;
       color: var(--text-main);
     }
 
     .role {
-      font-size: 1.05rem;
+      font-size: 1.06rem;
       color: var(--text-main);
-      margin-bottom: 0.15rem;
       font-weight: 650;
+      margin-bottom: 0.15rem;
     }
-    .role strong { color: var(--primary); font-weight: 900; }
+    .role strong { color: var(--primary); font-weight: 950; }
 
     .degree {
       font-size: 0.98rem;
       color: var(--text-muted);
-      margin-bottom: 1.4rem;
-      font-weight: 500;
+      font-weight: 550;
+      margin-bottom: 1.0rem;
     }
 
     .expertise-row {
-      display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1.85rem;
-    }
-
-    .site-footer{
-      padding: 1.25rem 1.5rem 2.5rem 1.5rem;
-      text-align: center;
-      color: var(--text-muted);
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-    .site-footer .footer-inner{
-      max-width: 850px;
-      margin: 0 auto;
-      opacity: 0.9;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1.15rem;
     }
 
     .exp-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: white; border: 1px solid var(--border-subtle);
-      color: var(--text-main); padding: 6px 14px;
-      border-radius: 99px; font-size: 0.85rem; font-weight: 800;
-      box-shadow: 0 2px 4px rgba(2,6,23,0.03);
-      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid rgba(2, 6, 23, 0.08);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 900;
+      box-shadow: 0 1px 0 rgba(2,6,23,0.04);
+      transition: 0.2s;
     }
-    .exp-tag i { color: var(--accent); font-size: 0.9rem; }
-    .exp-tag:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+    .exp-tag i { color: var(--accent); font-size: 0.95rem; }
+    .exp-tag:hover {
+      transform: translateY(-1px);
+      border-color: rgba(10, 60, 255, 0.35);
+      box-shadow: 0 10px 18px -16px rgba(10, 60, 255, 0.35);
+    }
 
-    .social-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .social-row {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
     .social-btn {
-      width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; background: white; border: 1px solid var(--border-subtle); color: var(--text-muted);
-      transition: all 0.2s; text-decoration: none; font-size: 1.1rem;
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid rgba(2, 6, 23, 0.10);
+      color: var(--text-muted);
+      transition: 0.2s;
+      text-decoration: none;
+      font-size: 1.05rem;
     }
     .social-btn:hover {
       transform: translateY(-2px);
-      border-color: var(--primary);
-      color: white;
-      background: var(--primary);
-      box-shadow: 0 4px 6px -1px rgba(11, 64, 141, 0.30);
+      border-color: rgba(10, 60, 255, 0.35);
+      color: var(--primary);
+      box-shadow: 0 14px 24px -18px rgba(10, 60, 255, 0.55);
     }
 
-    /* --- STICKY NAV --- */
+    /* ===== NAV ===== */
     .nav-bar {
       position: sticky;
-      top: 1rem;
+      top: 0;
       z-index: 100;
-      margin: 0 1.5rem;
-      background: rgba(255, 255, 255, 0.92);
+      padding: 0.65rem 1rem;
+      background: rgba(255,255,255,0.86);
       backdrop-filter: blur(10px);
-      border-radius: 16px;
-      border: 1px solid rgba(2, 6, 23, 0.06);
-      box-shadow: 0 10px 20px -5px rgba(2, 6, 23, 0.06);
-      padding: 0.6rem;
-      display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;
+      border-top: 1px solid rgba(2,6,23,0.06);
+      border-bottom: 1px solid rgba(2,6,23,0.08);
+      display: flex;
+      justify-content: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
     }
 
     .nav-item {
-      padding: 0.5rem 1.15rem; border-radius: 10px;
-      text-decoration: none; color: var(--text-muted); font-weight: 850; font-size: 0.9rem;
-      transition: all 0.2s;
+      padding: 0.5rem 1.0rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 900;
+      font-size: 0.9rem;
+      transition: 0.18s;
       white-space: nowrap;
-      font-family: var(--font-main);
     }
-    .nav-item:hover { color: var(--text-main); background: #eef2ff; }
-    .nav-item.active { background: var(--primary); color: white; }
+    .nav-item:hover { background: rgba(10, 60, 255, 0.08); color: var(--text-main); }
+    .nav-item.active { background: var(--primary); color: #ffffff; }
 
-    /* --- CONTENT --- */
-    .content { padding: 3.75rem 3rem; }
-    section { margin-bottom: 5.2rem; scroll-margin-top: 6rem; }
+    /* ===== CONTENT ===== */
+    .content { padding: 3.0rem 2.25rem; }
+    section { margin-bottom: 4.6rem; scroll-margin-top: 5.2rem; }
 
+    /* ✅ Section title style: match across all sections */
     .section-header {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 12px;
-
-      margin-bottom: 2.1rem;            /* ✅ more separation */
-      border-bottom: 2px solid #eef2ff;
-      padding-bottom: 14px;
+      gap: 14px;
+      margin-bottom: 1.75rem;
     }
 
     .section-title {
-      font-family: var(--font-main);
-      font-size: 1.5rem;                 /* ✅ clearer hierarchy */
+      font-size: 1.55rem;
       font-weight: 950;
-      color: var(--text-main);
-      letter-spacing: -0.015em;
+      letter-spacing: -0.02em;
+      position: relative;
+      padding-bottom: 10px;
     }
 
-    /* ✅ About typography tuned for readability + compactness */
+    /* vivid underline bar (more “eye-catching”) */
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 72px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      box-shadow: 0 10px 20px -14px rgba(10, 60, 255, 0.85);
+    }
+
+    /* About typography: compact & scan-friendly like Youngwan */
     .about-text {
       font-size: 1.0rem;
       color: #334155;
-      margin-bottom: 0.9rem;
-      font-weight: 500;
-      line-height: 1.75;
-      max-width: 74ch;
-      margin-left: auto;
-      margin-right: auto;
+      font-weight: 520;
+      line-height: 1.78;
+      max-width: 78ch;
     }
-    .about-text p { margin-bottom: 0.85rem; }
-    .about-text br { display: none; } /* ✅ remove visual “double spacing” while keeping content */
+    .about-text p { margin-bottom: 0.95rem; }
+    .about-text br { display: none; } /* keep content but avoid “double spacing” feel */
     .about-text a {
       color: var(--primary);
       text-decoration: none;
       font-weight: 900;
-      border-bottom: 1px solid transparent;
-      transition: 0.2s;
+      border-bottom: 1px solid rgba(10, 60, 255, 0.22);
+      transition: 0.18s;
     }
-    .about-text a:hover { border-bottom-color: var(--primary); }
+    .about-text a:hover { border-bottom-color: rgba(10, 60, 255, 0.65); }
 
-    /* --- FILTER UI --- */
+    /* ===== News / Service list (Youngwan-like simple bullets) ===== */
+    .bullet-list {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-width: 82ch;
+    }
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.1rem;
+      color: #334155;
+      font-weight: 520;
+    }
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 10px 16px -14px rgba(255, 45, 85, 0.9);
+    }
+    .bullet-date {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      font-weight: 800;
+      color: rgba(11, 18, 32, 0.70);
+      margin-right: 0.35rem;
+    }
+    .bullet-note {
+      color: rgba(71, 85, 105, 0.95);
+    }
+    .demo-tag {
+      display: inline-block;
+      margin-left: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.78em;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(2,6,23,0.06);
+      color: rgba(2,6,23,0.70);
+    }
+
+    /* ===== FILTER UI ===== */
     .filters {
       width: 100%;
       display: flex;
@@ -247,74 +327,84 @@
       justify-content: flex-start;
     }
 
-    .conf-select { margin-left: auto; }
-
     .filter-tabs {
       display: flex;
       gap: 5px;
-      background: #eef2ff;
-      padding: 4px;
-      border-radius: 99px;
-      border: 1px solid rgba(11, 64, 141, 0.10);
+      background: rgba(10, 60, 255, 0.08);
+      padding: 5px;
+      border-radius: 999px;
+      border: 1px solid rgba(10, 60, 255, 0.12);
     }
+
     .filter-btn {
       background: transparent;
       border: none;
-      padding: 6px 14px;
+      padding: 7px 14px;
       font-family: var(--font-main);
       font-size: 0.85rem;
-      font-weight: 900;
-      color: var(--text-muted);
+      font-weight: 950;
+      color: rgba(71, 85, 105, 0.95);
       cursor: pointer;
-      transition: 0.2s;
-      border-radius: 99px;
+      transition: 0.18s;
+      border-radius: 999px;
       white-space: nowrap;
     }
-    .filter-btn:hover { color: var(--primary); }
+    .filter-btn:hover { color: var(--primary-deep); }
     .filter-btn.active {
-      background: white;
-      color: var(--primary);
-      box-shadow: 0 2px 4px rgba(2,6,23,0.06);
+      background: #ffffff;
+      color: var(--primary-deep);
+      box-shadow: 0 8px 16px -14px rgba(10, 60, 255, 0.85);
+      border: 1px solid rgba(10, 60, 255, 0.18);
     }
 
     .conf-select {
-      border: 1px solid var(--border-subtle);
-      background: white;
+      margin-left: auto;
+      border: 1px solid rgba(2, 6, 23, 0.12);
+      background: #ffffff;
       border-radius: 12px;
-      padding: 8px 10px;
+      padding: 9px 10px;
       font-weight: 900;
-      color: var(--text-muted);
+      color: rgba(71, 85, 105, 0.95);
       outline: none;
       cursor: pointer;
       font-family: var(--font-main);
     }
-    .conf-select:focus { border-color: rgba(11, 64, 141, 0.45); }
+    .conf-select:focus { border-color: rgba(10, 60, 255, 0.45); }
 
-    /* --- PUBLICATION BOXES --- */
+    /* ===== PUBLICATION CARDS (more vivid + cleaner) ===== */
     .pub-row {
-      display: flex; gap: 1.25rem; padding: 1.2rem 1.25rem; margin-bottom: 1rem;
-      background: #f6f8ff;
-      border: 1px solid rgba(2, 6, 23, 0.04);
+      display: flex;
+      gap: 1.1rem;
+      padding: 1.1rem 1.2rem;
+      margin-bottom: 0.9rem;
+
+      background: #ffffff;
+      border: 1px solid rgba(2, 6, 23, 0.09);
       border-radius: var(--radius-sm);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
+
+      box-shadow: 0 10px 22px -18px rgba(2, 6, 23, 0.20);
+      transition: 0.18s;
     }
 
     .pub-row:hover {
       transform: translateY(-2px);
-      background: white;
-      border-color: rgba(11, 64, 141, 0.32);
-      box-shadow: 0 10px 22px -8px rgba(11, 64, 141, 0.14);
+      border-color: rgba(10, 60, 255, 0.30);
+      box-shadow: 0 22px 40px -26px rgba(10, 60, 255, 0.55);
     }
 
-    /* ✅ Make thumbnails less dominant / less “CV-like” */
     .pub-thumb {
-      width: 120px; height: 84px; flex-shrink: 0;
-      border-radius: 10px; overflow: hidden; background: #e5e7eb; border: 1px solid var(--border-subtle);
+      width: 112px;
+      height: 78px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(2,6,23,0.06);
+      border: 1px solid rgba(2, 6, 23, 0.08);
     }
     .pub-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
     .pub-data { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
     .pub-title {
       font-weight: 950;
       font-size: 1.08rem;
@@ -323,202 +413,203 @@
       color: var(--text-main);
       word-break: break-word;
       overflow-wrap: anywhere;
-      font-family: var(--font-main);
       letter-spacing: -0.01em;
     }
-    .pub-authors { color: #475569; word-break: break-word; overflow-wrap: anywhere; font-weight: 600; }
+
+    .pub-authors { color: #475569; word-break: break-word; overflow-wrap: anywhere; font-weight: 650; }
 
     .pub-meta {
-      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
       font-size: 0.85rem;
       font-family: var(--font-mono);
       margin-top: 10px;
     }
-    .badge-conf { color: var(--primary); font-weight: 900; }
+
+    .badge-conf { color: var(--primary-deep); font-weight: 950; }
     .badge-year {
-      color: #0f172a;
-      background: #eaf2ff;
+      color: var(--text-main);
+      background: rgba(10, 60, 255, 0.10);
       padding: 2px 8px;
-      border-radius: 6px;
-      font-weight: 900;
-      border: 1px solid rgba(11, 64, 141, 0.12);
+      border-radius: 8px;
+      font-weight: 950;
+      border: 1px solid rgba(10, 60, 255, 0.12);
     }
+
     .badge-subvenue {
       display: inline-block;
       padding: 4px 10px;
       border-radius: 999px;
       font-size: 0.85em;
       line-height: 1;
-      border: 1px dashed rgba(0,0,0,0.25);
-      color: rgba(0,0,0,0.65);
-      background: rgba(0,0,0,0.03);
+      border: 1px dashed rgba(2,6,23,0.25);
+      color: rgba(2,6,23,0.65);
+      background: rgba(2,6,23,0.03);
       margin-left: 6px;
     }
+
     .badge-award {
       color: var(--accent);
-      font-weight: 900;
+      font-weight: 950;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       background: var(--accent-soft);
       padding: 2px 8px;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 51, 0, 0.18);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 45, 85, 0.18);
       font-family: var(--font-main);
     }
+
     .badge-if {
-      color: #0f172a;
+      color: var(--text-main);
       background: #ffffff;
       padding: 2px 8px;
-      border-radius: 6px;
-      font-weight: 900;
-      border: 1px solid rgba(11, 64, 141, 0.12);
+      border-radius: 8px;
+      font-weight: 950;
+      border: 1px solid rgba(2, 6, 23, 0.12);
       font-family: var(--font-mono);
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
-    .badge-if .if-label {
-      color: #475569;
-      font-weight: 900;
-    }
-    .badge-if .if-value {
-      color: var(--primary);
-      font-weight: 900;
-    }
+    .badge-if .if-label { color: rgba(71, 85, 105, 0.95); font-weight: 950; }
+    .badge-if .if-value { color: var(--primary-deep); font-weight: 950; }
 
     .pub-links a {
-      color: var(--text-muted);
+      color: rgba(71, 85, 105, 0.95);
       text-decoration: none;
-      font-weight: 900;
-      border: 1px solid var(--border-subtle);
-      padding: 2px 8px;
-      border-radius: 6px;
+      font-weight: 950;
+      border: 1px solid rgba(2, 6, 23, 0.12);
+      padding: 3px 9px;
+      border-radius: 10px;
       font-size: 0.75rem;
-      transition: 0.2s;
-      background: white;
+      transition: 0.16s;
+      background: #ffffff;
       display: inline-block;
       font-family: var(--font-main);
     }
     .pub-links a:hover {
-      border-color: var(--primary);
-      color: white;
-      background: var(--primary);
+      border-color: rgba(10, 60, 255, 0.40);
+      color: var(--primary-deep);
+      background: rgba(10, 60, 255, 0.08);
     }
 
-    /* --- Pagination --- */
+    /* ===== Pagination ===== */
     #pub-pagination {
-      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
-      margin-top: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
     }
     .page-btn {
-      border: 1px solid var(--border-subtle);
-      background: white;
-      border-radius: 10px;
-      padding: 6px 12px;
+      border: 1px solid rgba(2, 6, 23, 0.12);
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 7px 14px;
       cursor: pointer;
-      font-weight: 900;
-      color: var(--text-muted);
-      transition: 0.2s;
+      font-weight: 950;
+      color: rgba(71, 85, 105, 0.95);
+      transition: 0.16s;
       font-family: var(--font-main);
     }
-    .page-btn:hover { border-color: var(--primary); color: var(--primary); }
-    .page-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .page-btn:hover { border-color: rgba(10, 60, 255, 0.35); color: var(--primary-deep); }
+    .page-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
     .page-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    /* --- EXPERIENCE & EDUCATION --- */
-    .exp-item { display: flex; gap: 1.5rem; margin-bottom: 2.25rem; position: relative; }
-    .exp-line { width: 2px; background: #eaf2ff; position: absolute; top: 12px; bottom: -38px; left: 6px; }
+    /* ===== EXPERIENCE / EDUCATION ===== */
+    .exp-item { display: flex; gap: 1.25rem; margin-bottom: 2.1rem; position: relative; }
+    .exp-line {
+      width: 2px;
+      background: rgba(10, 60, 255, 0.12);
+      position: absolute;
+      top: 12px; bottom: -36px; left: 6px;
+    }
     .exp-item:last-child .exp-line { display: none; }
     .exp-dot {
-      width: 14px; height: 14px; border-radius: 50%; background: white;
-      border: 3px solid var(--primary); z-index: 2; flex-shrink: 0; margin-top: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--primary);
+      box-shadow: 0 10px 18px -16px rgba(10, 60, 255, 0.9);
+      z-index: 2; flex-shrink: 0; margin-top: 6px;
     }
     .exp-content h3 { font-size: 1.1rem; font-weight: 950; margin-bottom: 2px; }
-    .exp-content .org { color: var(--text-muted); font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
-    .exp-content .time { font-family: var(--font-mono); font-size: 0.8rem; color: #94a3b8; }
+    .exp-content .org { color: var(--text-muted); font-size: 0.95rem; font-weight: 750; margin-bottom: 4px; }
+    .exp-content .time { font-family: var(--font-mono); font-size: 0.82rem; color: rgba(148, 163, 184, 0.95); }
 
+    /* ===== Awards ===== */
     .award-item {
-      display: flex; gap: 1rem; align-items: baseline; margin-bottom: 1rem;
-      padding: 1rem; background: #f6f8ff; border-radius: 12px; border: 1px solid transparent;
-      transition: 0.2s;
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      margin-bottom: 0.9rem;
+      padding: 1rem 1.05rem;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(2, 6, 23, 0.10);
+      box-shadow: 0 10px 22px -18px rgba(2, 6, 23, 0.18);
+      transition: 0.16s;
     }
-    .award-item:hover { border-color: rgba(11, 64, 141, 0.25); background: white; }
-    .award-year { font-weight: 950; color: var(--primary); font-family: var(--font-mono); min-width: 50px; }
+    .award-item:hover { border-color: rgba(10, 60, 255, 0.22); box-shadow: 0 22px 40px -26px rgba(10, 60, 255, 0.50); }
+    .award-year { font-weight: 950; color: var(--primary-deep); font-family: var(--font-mono); min-width: 50px; }
 
-    /* ✅ New simple list styles for News / Academic Service */
-    .simple-list { display: flex; flex-direction: column; gap: 0.7rem; }
-    .simple-item {
-      padding: 0.95rem 1.05rem;
-      background: #f6f8ff;
-      border: 1px solid rgba(2, 6, 23, 0.04);
-      border-radius: 12px;
-      transition: 0.2s;
-      color: #334155;
-      font-weight: 550;
+    /* ===== Footer ===== */
+    .site-footer{
+      padding: 1.25rem 1.5rem 2.25rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-weight: 750;
+      font-size: 0.92rem;
+      border-top: 1px solid rgba(2,6,23,0.06);
+      background: #ffffff;
     }
-    .simple-item:hover {
-      background: white;
-      border-color: rgba(11, 64, 141, 0.22);
-    }
-    .simple-item .meta {
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: #64748b;
-      font-weight: 700;
-      margin-right: 0.4rem;
+    .site-footer .footer-inner{
+      max-width: 850px;
+      margin: 0 auto;
+      opacity: 0.92;
     }
 
-    /* =========================
-       MOBILE IMPROVEMENTS
-    ========================= */
+    /* ===== Mobile ===== */
     @media (max-width: 600px) {
-      body { padding-bottom: 3rem; font-size: 16.5px; }
+      body { font-size: 16.5px; padding-bottom: 3rem; }
 
       .wrapper {
         margin: 0;
         border-radius: 0;
+        border-left: none;
+        border-right: none;
         box-shadow: none;
       }
 
-      .hero { padding: 3.1rem 1.25rem 2.1rem 1.25rem; }
+      .hero { padding: 2.5rem 1.25rem 1.75rem 1.25rem; }
+      .hero-grid { grid-template-columns: 104px 1fr; gap: 1.0rem; }
+      .profile-wrap { width: 104px; height: 104px; }
       .name { font-size: 2.35rem; }
       .role { font-size: 0.98rem; }
       .degree { font-size: 0.92rem; }
 
-      .profile-wrap { width: 104px; height: 104px; }
-
       .nav-bar {
-        top: 0;
-        margin: 0;
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid rgba(2,6,23,0.08);
-        box-shadow: 0 8px 20px -14px rgba(2, 6, 23, 0.25);
-        padding: 0.55rem 0.75rem;
-        overflow-x: auto;
+        justify-content: flex-start;
         flex-wrap: nowrap;
-        justify-content: flex-start;
+        overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        padding: 0.6rem 0.75rem;
       }
-      .nav-item { padding: 0.45rem 0.9rem; }
 
-      .content { padding: 1.9rem 1.25rem; }
-      section { scroll-margin-top: 4.25rem; }
+      .content { padding: 2.1rem 1.25rem; }
+      section { scroll-margin-top: 4.6rem; }
 
-      .filters {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 8px;
-      }
+      .filters { gap: 8px; }
       .filter-tabs { width: 100%; justify-content: space-between; }
-      .filter-btn { flex: 1; text-align: center; padding: 8px 10px; }
-      .conf-select { width: 100%; }
+      .filter-btn { flex: 1; text-align: center; }
+
+      .conf-select { width: 100%; margin-left: 0; }
 
       .pub-row { flex-direction: column; gap: 0.95rem; padding: 1.05rem; }
       .pub-thumb { width: 100%; height: 160px; }
-      .pub-title { font-size: 1.02rem; }
-      .pub-meta { gap: 8px; }
     }
   </style>
 </head>
@@ -527,31 +618,35 @@
   <div class="wrapper">
 
     <header class="hero">
-      <div class="profile-wrap">
-        <img src="/figures/pic.jpeg" alt="Jaehyun Choi" class="profile-img"
-             onerror="this.src='https://ui-avatars.com/api/?name=JC&background=0b408d&color=fff&size=200'">
-      </div>
+      <div class="hero-grid">
+        <div class="profile-wrap">
+          <img src="/figures/pic.jpeg" alt="Jaehyun Choi" class="profile-img"
+               onerror="this.src='https://ui-avatars.com/api/?name=JC&background=0b408d&color=fff&size=200'">
+        </div>
 
-      <h1 class="name">Jaehyun Choi</h1>
+        <div class="hero-text">
+          <h1 class="name">Jaehyun Choi</h1>
 
-      <div class="role">
-        Researcher at <strong>Korea AI Safety Institute (AISI), ETRI</strong>
-      </div>
-      <div class="degree">
-        Ph.D. in Electrical Engineering
-      </div>
+          <div class="role">
+            Researcher at <strong>Korea AI Safety Institute (AISI), ETRI</strong>
+          </div>
+          <div class="degree">
+            Ph.D. in Electrical Engineering
+          </div>
 
-      <div class="expertise-row">
-        <span class="exp-tag"><i class="fas fa-shield-alt"></i> AI Safety</span>
-        <span class="exp-tag"><i class="fas fa-user-secret"></i> Deepfake Detection</span>
-        <span class="exp-tag"><i class="fas fa-database"></i> Dataset Condensation</span>
-      </div>
+          <div class="expertise-row">
+            <span class="exp-tag"><i class="fas fa-shield-alt"></i> AI Safety</span>
+            <span class="exp-tag"><i class="fas fa-user-secret"></i> Deepfake Detection</span>
+            <span class="exp-tag"><i class="fas fa-database"></i> Dataset Condensation</span>
+          </div>
 
-      <div class="social-row">
-        <a href="https://scholar.google.com/citations?user=n-OTCygAAAAJ&hl=ko&authuser=3" class="social-btn" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-        <a href="https://github.com/PRE6ENT" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/jaehyun-choi-6aa204101/" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:pre6ent@etri.re.kr" class="social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <div class="social-row">
+            <a href="https://scholar.google.com/citations?user=n-OTCygAAAAJ&hl=ko&authuser=3" class="social-btn" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+            <a href="https://github.com/PRE6ENT" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/jaehyun-choi-6aa204101/" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:pre6ent@etri.re.kr" class="social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -568,7 +663,10 @@
     <main class="content">
 
       <section id="about">
-        <div class="section-title" style="margin-bottom: 1.25rem; font-weight: 950; font-size: 1.5rem;">About</div>
+        <div class="section-header">
+          <h2 class="section-title">About</h2>
+        </div>
+
         <div class="about-text">
           <p>
             I am a researcher at the <a href="https://www.aisi.re.kr/kor" target="_blank" rel="noreferrer">Korea AI Safety Institute (AISI)</a> within ETRI, working on explainable and robust deepfake detection.
@@ -584,18 +682,18 @@
         </div>
       </section>
 
-      <!-- ✅ NEW: News section (content placeholder; keep empty until you add items) -->
+      <!-- ===== News (with non-factual demo examples like Youngwan style) ===== -->
       <section id="news">
         <div class="section-header">
           <h2 class="section-title">News</h2>
         </div>
 
-        <!-- Keep content as-is policy: no claims added. Add your own items later. -->
-        <div class="simple-list" aria-label="News list">
-          <!-- Example structure:
-          <div class="simple-item"><span class="meta">2026-01</span> ...</div>
-          -->
-        </div>
+        <ul class="bullet-list" aria-label="News list">
+          <!-- Replace these demo lines with your real news items -->
+          <li><span class="bullet-date">YYYY-MM</span><span class="bullet-note">Example news item goes here (replace with your update).</span><span class="demo-tag">demo</span></li>
+          <li><span class="bullet-date">YYYY-MM</span><span class="bullet-note">Example: paper accepted / preprint released / talk invited (write the real one).</span><span class="demo-tag">demo</span></li>
+          <li><span class="bullet-date">YYYY-MM</span><span class="bullet-note">Example: started a new position / project update.</span><span class="demo-tag">demo</span></li>
+        </ul>
       </section>
 
       <section id="publications">
@@ -621,6 +719,7 @@
           </div>
         </div>
 
+        <!-- (Publications content unchanged) -->
         <!-- Example papers -->
         <div class="pub-row" data-category="all" data-year="2026" data-conf="Pattern Recognition" data-date="2026-08-01">
           <div class="pub-thumb">
@@ -632,10 +731,7 @@
             <div class="pub-meta">
               <span class="badge-conf">Pattern Recognition</span>
               <span class="badge-year">2026</span>
-              <span class="badge-if">
-                <span class="if-label">IF</span>
-                <span class="if-value">7.6</span>
-              </span>
+              <span class="badge-if"><span class="if-label">IF</span><span class="if-value">7.6</span></span>
               <div class="pub-links">
                 <a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320326001044">PAPER</a>
               </div>
@@ -925,10 +1021,7 @@
             <div class="pub-meta">
               <span class="badge-conf">Pattern Recognition Letters</span>
               <span class="badge-year">2023</span>
-              <span class="badge-if">
-                <span class="if-label">IF</span>
-                <span class="if-value">5.1</span>
-              </span>
+              <span class="badge-if"><span class="if-label">IF</span><span class="if-value">5.1</span></span>
               <div class="pub-links">
                 <a href="https://www.sciencedirect.com/science/article/pii/S0167865523002787">PAPER</a>
               </div>
@@ -999,10 +1092,7 @@
             <div class="pub-meta">
               <span class="badge-conf">Pattern Recognition Letters</span>
               <span class="badge-year">2023</span>
-              <span class="badge-if">
-                <span class="if-label">IF</span>
-                <span class="if-value">5.1</span>
-              </span>
+              <span class="badge-if"><span class="if-label">IF</span><span class="if-value">5.1</span></span>
               <div class="pub-links">
                 <a href="https://www.sciencedirect.com/science/article/pii/S016786552300137X">PAPER</a>
               </div>
@@ -1073,10 +1163,7 @@
             <div class="pub-meta">
               <span class="badge-conf">Access</span>
               <span class="badge-year">2022</span>
-              <span class="badge-if">
-                <span class="if-label">IF</span>
-                <span class="if-value">3.5</span>
-              </span>
+              <span class="badge-if"><span class="if-label">IF</span><span class="if-value">3.5</span></span>
               <div class="pub-links">
                 <a href="https://ieeexplore.ieee.org/document/9967985">PAPER</a> <a href="https://github.com/PRE6ENT/PGE_DG/?tab=readme-ov-file">CODE</a>
               </div>
@@ -1087,17 +1174,18 @@
         <div id="pub-pagination"></div>
       </section>
 
-      <!-- ✅ NEW: Academic Service section (content placeholder; keep empty until you add items) -->
+      <!-- ===== Academic Service (with non-factual demo examples) ===== -->
       <section id="service">
         <div class="section-header">
           <h2 class="section-title">Academic Service</h2>
         </div>
 
-        <div class="simple-list" aria-label="Academic service list">
-          <!-- Example structure:
-          <div class="simple-item"><span class="meta">2026</span> Reviewer: CVPR, ICCV, NeurIPS ...</div>
-          -->
-        </div>
+        <ul class="bullet-list" aria-label="Academic service list">
+          <!-- Replace these demo lines with your real service items -->
+          <li><span class="bullet-date">YYYY</span><span class="bullet-note">Reviewer: [Conference/Journal name].</span><span class="demo-tag">demo</span></li>
+          <li><span class="bullet-date">YYYY</span><span class="bullet-note">Reviewer: [Workshop / Track].</span><span class="demo-tag">demo</span></li>
+          <li><span class="bullet-date">YYYY</span><span class="bullet-note">Program Committee / External Reviewer: [Venue].</span><span class="demo-tag">demo</span></li>
+        </ul>
       </section>
 
       <section id="experience">
@@ -1185,6 +1273,7 @@
         <div class="section-header">
           <h2 class="section-title">Honors & Awards</h2>
         </div>
+
         <div class="award-item">
           <div class="award-year">2025</div>
           <div><strong>Bronze Prize</strong>, Samsung HumanTech Paper Awards</div>
@@ -1217,12 +1306,8 @@
 
     /* =========================
        Author linkify (Option B)
-       - Keeps your existing HTML (incl. <strong>)
-       - Replaces matching author names with subtle links
-       - Adds minimal CSS automatically (so links aren’t vivid blue)
     ========================= */
 
-    // 1) Name -> personal site URL
     const AUTHOR_LINKS = {
       "Hyun Seok Seong": "https://hynnsk.github.io/",
       "Hyun Seok Seong*": "https://hynnsk.github.io/",
@@ -1230,57 +1315,45 @@
       "Jaemyung Yu*": "https://sites.google.com/view/jaemyungyu",
       "Jiwan Hur": "https://jiwanhur.github.io/",
       "Jiwan Hur*": "https://jiwanhur.github.io/"
-      // Add more like:
-      // "Jaehyun Choi": "https://....",
     };
 
-    // Inject subtle link CSS once
     function injectAuthorLinkStyles() {
       if (document.getElementById("author-linkify-styles")) return;
 
       const style = document.createElement("style");
       style.id = "author-linkify-styles";
       style.textContent = `
-        .pub-authors .author-link {
+        .pub-authors .author-link{
           color: inherit;
           text-decoration: underline;
-          text-decoration-color: rgba(0, 0, 0, 0.25);
+          text-decoration-color: rgba(10, 60, 255, 0.30);
           text-decoration-thickness: 1px;
           text-underline-offset: 2px;
         }
-        .pub-authors .author-link::after {
+        .pub-authors .author-link::after{
           content: "↗";
           font-size: 0.85em;
           margin-left: 0.15em;
-          opacity: 0.35;
+          opacity: 0.40;
         }
         .pub-authors .author-link:hover,
-        .pub-authors .author-link:focus-visible {
-          text-decoration-color: rgba(0, 0, 0, 0.6);
+        .pub-authors .author-link:focus-visible{
+          text-decoration-color: rgba(10, 60, 255, 0.70);
         }
         .pub-authors .author-link:hover::after,
-        .pub-authors .author-link:focus-visible::after {
-          opacity: 0.6;
+        .pub-authors .author-link:focus-visible::after{
+          opacity: 0.65;
         }
       `;
       document.head.appendChild(style);
     }
 
-    function escapeRegExp(s) {
-      return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
+    function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 
-    // Build a regex that matches any author name.
-    // Sort by length so longer names match first (helps avoid partial overlaps).
     function buildNameRegex() {
-      const names = Object.keys(AUTHOR_LINKS).filter(Boolean).sort((a, b) => b.length - a.length);
-      if (names.length === 0) return null;
-
+      const names = Object.keys(AUTHOR_LINKS).filter(Boolean).sort((a,b)=>b.length-a.length);
+      if (!names.length) return null;
       const alt = names.map(escapeRegExp).join("|");
-
-      // Match names with safe-ish boundaries for author lists:
-      // prefix: start OR whitespace/comma/semicolon/open-paren
-      // suffix: end OR whitespace/comma/semicolon/close-paren/period
       return new RegExp(`(^|[\\s,;\\(])(${alt})(?=$|[\\s,;\\)\\.])`, "g");
     }
 
@@ -1291,22 +1364,18 @@
       NAME_RE.lastIndex = 0;
       if (!NAME_RE.test(text)) return;
 
-      NAME_RE.lastIndex = 0; // reset for iteration
+      NAME_RE.lastIndex = 0;
       const frag = document.createDocumentFragment();
-
-      let lastIndex = 0;
-      let m;
+      let lastIndex = 0, m;
 
       while ((m = NAME_RE.exec(text)) !== null) {
-        const prefix = m[1];         // delimiter char or ""
-        const name = m[2];           // matched author name
-        const matchStart = m.index;  // where the whole match begins
+        const prefix = m[1];
+        const name = m[2];
+        const matchStart = m.index;
         const nameStart = matchStart + prefix.length;
 
-        // Add text up to the start of the name (including the prefix delimiter)
         frag.append(document.createTextNode(text.slice(lastIndex, nameStart)));
 
-        // Add the linked name (subtle styling via class)
         const a = document.createElement("a");
         a.href = AUTHOR_LINKS[name];
         a.textContent = name;
@@ -1319,9 +1388,7 @@
         lastIndex = nameStart + name.length;
       }
 
-      // Add remaining tail text
       frag.append(document.createTextNode(text.slice(lastIndex)));
-
       textNode.parentNode.replaceChild(frag, textNode);
     }
 
@@ -1332,42 +1399,31 @@
         {
           acceptNode(node) {
             if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-
             const parent = node.parentNode;
             if (!parent) return NodeFilter.FILTER_REJECT;
-
-            // skip inside existing links (avoid nested <a>)
             if (parent.closest && parent.closest("a")) return NodeFilter.FILTER_REJECT;
-
-            // skip scripts/styles just in case
             if (parent.closest && parent.closest("script,style")) return NodeFilter.FILTER_REJECT;
-
             return NodeFilter.FILTER_ACCEPT;
           }
         }
       );
 
-      // Collect first, then replace (DOM changes won’t confuse the walker)
       const nodes = [];
       let n;
       while ((n = walker.nextNode())) nodes.push(n);
-
       nodes.forEach(node => linkifyTextNode(node, NAME_RE));
     }
 
     document.addEventListener("DOMContentLoaded", () => {
       injectAuthorLinkStyles();
-
       const NAME_RE = buildNameRegex();
       if (!NAME_RE) return;
-
       document.querySelectorAll(".pub-authors").forEach(el => linkifyAuthors(el, NAME_RE));
     });
 
     const pubItems = Array.from(document.querySelectorAll('.pub-row'));
     const paginationEl = document.getElementById('pub-pagination');
     const confSelect = document.getElementById('conf-select');
-
     const categoryTabs = document.getElementById('category-tabs');
     const yearGroupTabs = document.getElementById('yeargroup-tabs');
 
@@ -1421,24 +1477,19 @@
     }
 
     function hasCategory(el, cat) {
-      const cats = (el.dataset.category || "")
-        .split(/[\s,]+/)
-        .filter(Boolean);
+      const cats = (el.dataset.category || "").split(/[\s,]+/).filter(Boolean);
       return cats.includes(cat);
     }
 
     function getFilteredItems() {
       return pubItems.filter(el => {
         const catOk = (state.category === 'all') || hasCategory(el, state.category);
-
         const yearOk =
           (state.yearGroup === 'all') ||
           (state.yearGroup === 'recent' && isRecent3Years(el)) ||
           (state.yearGroup === 'older' && !isRecent3Years(el));
-
         const conf = (el.dataset.conf || '').trim();
         const confOk = (state.conf === 'all') || (conf === state.conf);
-
         return catOk && yearOk && confOk;
       });
     }
@@ -1511,9 +1562,7 @@
     buildConferenceOptions();
     renderPublications();
 
-    /* =========================
-       Nav highlight (adjust offset on mobile)
-    ========================= */
+    /* ===== Nav highlight ===== */
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('section');
 
@@ -1524,9 +1573,7 @@
       });
     });
 
-    function scrollSpyOffset() {
-      return window.innerWidth <= 600 ? 110 : 200;
-    }
+    function scrollSpyOffset() { return window.innerWidth <= 600 ? 120 : 200; }
 
     window.addEventListener('scroll', () => {
       let current = '';
@@ -1540,7 +1587,6 @@
       });
     });
 
-    // Footer year (keeping your id="2026")
     document.getElementById("2026").textContent = new Date().getFullYear();
   </script>
 </body>
