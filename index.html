@@ -31,10 +31,9 @@
 
   <style>
     :root {
-      /* ✅ More vivid + higher-contrast academic palette */
-      --primary: #0a3cff;         /* vivid blue */
+      --primary: #0a3cff;
       --primary-deep: #061b7a;
-      --accent: #ff2d55;          /* vivid magenta-red */
+      --accent: #ff2d55;
       --accent-soft: rgba(255, 45, 85, 0.10);
 
       --bg-body: #ffffff;
@@ -80,7 +79,6 @@
       position: relative;
     }
 
-    /* ===== HERO (Youngwan-like: left-aligned, compact, strong hierarchy) ===== */
     .hero {
       padding: 3.25rem 2.25rem 2.25rem 2.25rem;
       background:
@@ -226,7 +224,6 @@
     .content { padding: 3.0rem 2.25rem; }
     section { margin-bottom: 4.6rem; scroll-margin-top: 5.2rem; }
 
-    /* ✅ Section title style: match across all sections */
     .section-header {
       display: flex;
       flex-direction: column;
@@ -243,7 +240,6 @@
       padding-bottom: 10px;
     }
 
-    /* vivid underline bar (more “eye-catching”) */
     .section-title::after {
       content: "";
       position: absolute;
@@ -256,11 +252,10 @@
       box-shadow: 0 10px 20px -14px rgba(10, 60, 255, 0.85);
     }
 
-    /* ✅ Counter as plain text, same font next to "Publications" */
     .pub-counter{
       display: inline;
       margin-left: 10px;
-      font-size: 1.05rem;    /* slightly smaller than title */
+      font-size: 1.05rem;
       font-weight: 800;
       color: rgba(71, 85, 105, 0.95);
       letter-spacing: -0.01em;
@@ -275,7 +270,6 @@
       }
     }
 
-    /* About typography: compact & scan-friendly like Youngwan */
     .about-text {
       font-size: 1.0rem;
       color: #334155;
@@ -284,7 +278,7 @@
       max-width: 78ch;
     }
     .about-text p { margin-bottom: 0.95rem; }
-    .about-text br { display: none; } /* keep content but avoid “double spacing” feel */
+    .about-text br { display: none; }
     .about-text a {
       color: var(--primary);
       text-decoration: none;
@@ -294,7 +288,6 @@
     }
     .about-text a:hover { border-bottom-color: rgba(10, 60, 255, 0.65); }
 
-    /* ===== News / Service list (Youngwan-like simple bullets) ===== */
     .bullet-list {
       list-style: none;
       padding-left: 0;
@@ -342,17 +335,17 @@
       color: rgba(2,6,23,0.70);
     }
 
-    /* ✅ Emoji slot for News items */
     .news-emoji{
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 1.35em;
+      width: auto;
+      white-space: nowrap; 
       margin-right: 0.35rem;
       transform: translateY(1px);
+      line-height: 1;
     }
 
-    /* ✅ Nested service list (new) */
     .nested-service {
       list-style: none;
       padding-left: 0;
@@ -405,7 +398,6 @@
       box-shadow: 0 10px 16px -14px rgba(10, 60, 255, 0.65);
     }
 
-    /* ===== FILTER UI ===== */
     .filters {
       width: 100%;
       display: flex;
@@ -459,7 +451,6 @@
     }
     .conf-select:focus { border-color: rgba(10, 60, 255, 0.45); }
 
-    /* ===== PUBLICATION CARDS (remove thumbnails; text only) ===== */
     .pub-row {
       display: flex;
       gap: 1.1rem;
@@ -480,7 +471,6 @@
       box-shadow: 0 22px 40px -26px rgba(10, 60, 255, 0.55);
     }
 
-    /* ✅ Hide thumbs but keep markup intact */
     .pub-thumb{ display: none !important; }
 
     .pub-data { flex: 1; display: flex; flex-direction: column; min-width: 0; }
@@ -688,7 +678,6 @@
 
       .conf-select { width: 100%; margin-left: 0; }
 
-      /* ✅ pub rows are already text-only; keep simple on mobile */
       .pub-row { gap: 0.95rem; padding: 1.05rem; }
     }
   </style>
@@ -1400,10 +1389,6 @@
   </footer>
 
   <script>
-    /* =========================
-       ✅ News: keep only most recent 5 automatically
-       - Add data-date="YYYY-MM" or "YYYY-MM-DD" to each li in #news-list
-    ========================= */
     function parseNewsDate(li) {
       const raw = (li.dataset.date || "").trim();
       if (!raw) return null;
@@ -1434,18 +1419,6 @@
         if (idx >= maxItems) li.remove();
       });
     }
-
-    /* =========================
-       Publications: filter + pagination
-       - Category: All / Selected / Preprint
-       - Year group: All years / Recent 3 years / Older (DATE-based: today - 3 years)
-       - Conference: dropdown (auto options)
-       - Pagination: publications only (10 per page)
-    ========================= */
-
-    /* =========================
-       Author linkify (Option B)
-    ========================= */
 
     const AUTHOR_LINKS = {
       "Hyun Seok Seong": "https://hynnsk.github.io/",
