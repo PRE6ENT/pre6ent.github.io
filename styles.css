@@ -159,10 +159,40 @@ body {
     }
 } 
 
-.gold-reviewer-item {
-  list-style: none;
+#service .service-gold {
+  max-width: 82ch;
+  color: #334155;
 }
 
-.gold-reviewer-item > ul > li::marker {
-  color: #e64b5d;
+#service .service-title {
+  font-weight: 650;
+  margin-bottom: 0.55rem;
+}
+
+#service .service-venues {
+  list-style: none;
+  margin-left: 1.05rem;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+#service .service-venues li {
+  position: relative;
+  padding-left: 1rem;
+  font-weight: 520;
+  color: rgba(71, 85, 105, 0.98);
+}
+
+#service .service-venues li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 10px 16px -14px rgba(255, 45, 85, 0.9);
 }
