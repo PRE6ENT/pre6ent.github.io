@@ -158,3 +158,11 @@ body {
         justify-content: center;
     }
 } 
+
+.gold-reviewer-item {
+  list-style: none;
+}
+
+.gold-reviewer-item > ul > li::marker {
+  color: #e64b5d;
+}
